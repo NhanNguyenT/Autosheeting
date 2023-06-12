@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Model.Data;
+using Model.Entity.ViewPlan2PortCreationNS;
 
 namespace Model.Form
 {
@@ -21,10 +23,17 @@ namespace Model.Form
     /// </summary>
     public partial class ViewPlan2PortCreation_Form : System.Windows.Window
     {
+        private ViewPlan2PortCreation_Data Data => ViewPlan2PortCreation_Data.Instance;
         public ViewPlan2PortCreation_Form()
         {
             InitializeComponent();
        
+        }
+
+        private void run_Clicked(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            Data.Creation.Do();
         }
     }
 }

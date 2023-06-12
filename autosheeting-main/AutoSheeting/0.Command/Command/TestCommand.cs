@@ -72,14 +72,12 @@ namespace Model.RevitCommand
     [Transaction(TransactionMode.Manual)]
     public class TestCommand4 : RevitCommand
     {
+        private ViewPlan2PortCreation_Data data => ViewPlan2PortCreation_Data.Instance;
+
         public override void Execute()
         {
-            var creation = new ViewPlan2PortCreation
-            {
-                ViewPlan = 523483.GetElement<ViewPlan>(),
-                //ViewSheet = (doc.ActiveView as ViewSheet)!,
-            };
-            creation.Do();
+            var form = data.Form;
+            form.ShowDialog();
         }
     }
 }

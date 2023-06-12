@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:c="clr-namespace:Model.Control;assembly=BIMDev.ControlLibrary" 
-       
+        xmlns:data="clr-namespace:Model.Data" d:DataContext="{d:DesignInstance Type= data:ViewPlan2PortCreation_Data}"
+        mc:Ignorable="d"
         x:Name="root" Title="Create ViewSheet"> 
     <Window.Resources>
         <ResourceDictionary Source="/BIMDev.ControlLibrary;component/Model/Style/Styles.xaml" />
@@ -13,20 +14,29 @@
     <StackPanel Margin="10">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="90"/>
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="ViewPlan :" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
-            <ComboBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"
-                   ItemsSource="{Binding ViewPlans}"  DisplayMemberPath="Name" />
-            <TextBlock Text="Tilte Block :" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"
-                   ItemsSource="{Binding ViewSheets}"  DisplayMemberPath="Name" />
+            <TextBlock Text="ViewPlan :" FontWeight="Bold" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin=" 8 0 0 0 "
+                   ItemsSource="{Binding ViewPlans}" SelectedItem="{Binding Creation.ViewPlan}" DisplayMemberPath="Name" />
             
+            <TextBlock Text="Tilte Block :" FontWeight="Bold" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin=" 8 0 0 0 "
+                    ItemsSource="{Binding TitleBlockTypes}" SelectedItem="{Binding Creation.ViewSheetCreation.TitleBlockType}" DisplayMemberPath="Name"/>
+
+            <TextBlock Text="Sheet Number :" FontWeight="DemiBold" Grid.Row="2" Grid.Column="0" VerticalAlignment ="Center"
+                       HorizontalAlignment="Right"/>
+            <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin=" 8 0 0 0 "
+                 Text="{Binding Creation.ViewSheetCreation.SheetNumber}" />
+            
+            <Button Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Padding="12 3" Margin="0 8 10 0" Click="run_Clicked">RUN</Button>
         </Grid>
     </StackPanel>
 </Window>

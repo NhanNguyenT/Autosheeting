@@ -1,5 +1,6 @@
 ﻿using Autodesk.Revit.DB;
 using Model.Entity;
+using Model.Entity.ViewPlan2PortCreationNS;
 using Model.Form;
 using SingleData;
 using System;
@@ -8,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LocalNS = Model.Entity.ViewPlan2PortCreationNS;
 
 namespace Model.Data
 {
@@ -29,8 +31,15 @@ namespace Model.Data
 
         //
         private List<ViewPlan>? viewPlans;
-
         public List<ViewPlan> ViewPlans => this.viewPlans ??= this.GetViewPlans();
+
+        private List<FamilySymbol>? titleBlockTypes;
+        public List<FamilySymbol> TitleBlockTypes => this.titleBlockTypes ??= this.GetTitleBlockTypes();
+
+        //
+        private LocalNS.ViewPlan2PortCreation? creation;
+        public LocalNS.ViewPlan2PortCreation Creation => this.creation ??= new LocalNS.ViewPlan2PortCreation();
+
 
         // config
         public string ConfigFolder { get; set; } =
