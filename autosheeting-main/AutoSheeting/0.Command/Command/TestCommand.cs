@@ -60,13 +60,38 @@ namespace Model.RevitCommand
     {
         public override void Execute()
         {
-            var factory = new GridDimensionFactory
+            //var factory = new GridDimensionFactory
+            //{
+            //    //Grids = sel.PickElements<Grid>().ToList(),
+            //    Direction = XYZ.BasisY,
+            //    Origin = sel.PickPoint() 
+            //};
+            //factory.Do();
+
+            var factory = new GridDimensionSetFactory();
+            factory.Do();
+        }
+    }
+    [Transaction(TransactionMode.Manual)]
+    public class TestCommand3 : RevitCommand
+    {
+        public override void Execute()
+        {
+
+            //var factory = new WallDimensionFactory
+            //{
+            //    Wall = sel.PickElement<Wall>(),
+            //    Direction = XYZ.BasisX,
+            //    Origin = sel.PickPoint(),
+            //};
+            //factory.Do();
+
+            var factory = new WallDimensionSetFactory
             {
-                Grids = sel.PickElement<Grid>().ToList(),
-                Origin = sel.PickPoint() 
+                Wall = sel.PickElement<Wall>(),
+                //Origin = sel.PickPoint(),
             };
             factory.Do();
         }
     }
 }
- 
